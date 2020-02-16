@@ -33,7 +33,7 @@ namespace BlogPost.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Blog>> GetBlog(int id)
         {
-            var blog = await _context.Blog.FindAsync(id);
+            var blog = await _context.Blog.Include(b => b.Posts).Where(b => b.BlogId == id).FirstOrDefaultAsync();
 
             if (blog == null)
             {
