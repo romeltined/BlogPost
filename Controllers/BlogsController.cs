@@ -54,11 +54,17 @@ namespace BlogPost.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(blog).State = EntityState.Modified;
+            //_context.Entry(blog).State = EntityState.Modified;
+            _context.Entry(blog).State = EntityState.Detached;
+            _context.Entry(blog.Detail).State = EntityState.Detached;
+            
 
             try
             {
+                //await _context.SaveChangesAsync();
+                _context.Update(blog);
                 await _context.SaveChangesAsync();
+
             }
             catch (DbUpdateConcurrencyException)
             {
