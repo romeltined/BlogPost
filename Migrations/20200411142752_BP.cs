@@ -2,7 +2,7 @@
 
 namespace BlogPost.Migrations
 {
-    public partial class BlogPost : Migration
+    public partial class BP : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
